@@ -1,6 +1,6 @@
 {
   "name": "apple-search-ads-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Opinionated Apple Search Ads API client library for Javascript",
   "main": "index.js",
   "scripts": {
