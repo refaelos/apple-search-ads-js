@@ -1,0 +1,25 @@
+{
+  "name": "apple-search-ads-js",
+  "version": "1.0.0",
+  "description": "Opinionated Apple Search Ads API client library for Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/refaelos/apple-search-ads-js.git"
+  },
+  "keywords": [
+    "apple",
+    "search",
+    "ads",
+    "asa"
+  ],
+  "author": "Refael Dakar <rafa@refaelos.com> (https://github.com/refaelos)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/refaelos/apple-search-ads-js/issues"
+  },
+  "homepage": "https://github.com/refaelos/apple-search-ads-js#readme"
+}
