@@ -13,9 +13,8 @@ module.exports = class CampaignNegativeKeywords extends Api {
      * @param {AdGroup} negativeKeywords an {Array<NegativeKeyword>}
      * @returns {Promise<Array<NegativeKeyword>>}
      */
-    async create(campaignId, negativeKeywords) {
-        const resp = await super.create(`campaigns/${campaignId}/negativekeywords/bulk`, negativeKeywords);
-        return resp.data;
+    create(campaignId, negativeKeywords) {
+        return super.create(`campaigns/${campaignId}/negativekeywords/bulk`, negativeKeywords);
     }
 
     /**
@@ -26,9 +25,8 @@ module.exports = class CampaignNegativeKeywords extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<NegativeKeyword>}>}
      */
-    async find(campaignId, selector, {pageSize = 1000} = {}) {
-        const resp = await super.find(`campaigns/${campaignId}/negativekeywords/find`, selector, pageSize);
-        return {results: resp.data, next: resp.next};
+    find(campaignId, selector, {pageSize = 1000} = {}) {
+        return super.find(`campaigns/${campaignId}/negativekeywords/find`, selector, pageSize);
     }
 
     /**
@@ -38,9 +36,8 @@ module.exports = class CampaignNegativeKeywords extends Api {
      * @param {number|string} keywordId the id of the negative keyword to fetch
      * @returns {Promise<NegativeKeyword>}
      */
-    async get(campaignId, keywordId) {
-        const resp = await super.get(`campaigns/${campaignId}/negativekeywords/${keywordId}`);
-        return resp.data;
+    get(campaignId, keywordId) {
+        return super.get(`campaigns/${campaignId}/negativekeywords/${keywordId}`);
     }
 
     /**
@@ -50,9 +47,8 @@ module.exports = class CampaignNegativeKeywords extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<NegativeKeyword>}>}
      */
-    async getAll(campaignId, {pageSize = 1000} = {}) {
-        const resp = await super.get(`campaigns/${campaignId}/negativekeywords`, pageSize);
-        return {results: resp.data, next: resp.next};
+    getAll(campaignId, {pageSize = 1000} = {}) {
+        return super.get(`campaigns/${campaignId}/negativekeywords`, pageSize);
     }
 
     /**
@@ -62,9 +58,8 @@ module.exports = class CampaignNegativeKeywords extends Api {
      * @param {Array<NegativeKeyword.UpdateRequest>} negativeKeywordUpdateRequests array of NegativeKeyword.UpdateRequest
      * @returns {Promise<Array<NegativeKeyword>>}
      */
-    async update(campaignId, negativeKeywordUpdateRequests) {
-        const resp = await super.update(`campaigns/${campaignId}/negativekeywords/bulk`, negativeKeywordUpdateRequests);
-        return resp.data;
+    update(campaignId, negativeKeywordUpdateRequests) {
+        return super.update(`campaigns/${campaignId}/negativekeywords/bulk`, negativeKeywordUpdateRequests);
     }
 
     /**
@@ -74,8 +69,7 @@ module.exports = class CampaignNegativeKeywords extends Api {
      * @param {Array<number|string>} negativeKeywordIds the id of the negative keywords to delete
      * @returns {number} number of successfully deleted negative keywords
      */
-    async delete(campaignId, negativeKeywordIds) {
-        const resp = await super.post(`campaigns/${campaignId}/negativekeywords/delete/bulk`, negativeKeywordIds);
-        return resp.data;
+    delete(campaignId, negativeKeywordIds) {
+        return super.post(`campaigns/${campaignId}/negativekeywords/delete/bulk`, negativeKeywordIds);
     }
 }

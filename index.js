@@ -2,9 +2,12 @@ const https = require('https');
 const APIs = require('./apis');
 const fs = require('fs');
 const axios = require('axios');
-const ASAApiError = require('./util/asaapierror');
+const Utils = require('./util');
 
 class AsaApi {
+
+    static Certificate = Utils.Certificate;
+    static ASAApiError = Utils.ASAApiError;
 
     campaigns = new APIs.Campaigns(this);
     adgroups = new APIs.AdGroups(this);
@@ -16,8 +19,6 @@ class AsaApi {
         this._orgId = orgId;
         this._certificate = certificate;
         this._v = 'v3';
-
-        this._defaultQueryParams = {limit: 1000, offset: 0};
 
         this._httpsAgent = new https.Agent({
             rejectUnauthorized: false,
@@ -35,56 +36,37 @@ class AsaApi {
         });
     }
 
-    async get(path, queryParams) {
-        const self = this;
-        const res = await this._client.get(path, {params: Object.assign({}, this._defaultQueryParams, queryParams)})
-        const pagination = res.data.pagination;
-        if (pagination !== null) {
-            const offset = pagination.startIndex + queryParams.limit;
-            if (offset <= pagination.totalResults) {
-                res.data.next = () => {
-                    return self.get(path, Object.assign({}, queryParams, {offset}));
-                };
-            }
+    get(path, queryParams) {
+        try {
+            return this._client.get(path, {params: Object.assign({limit: 1000, offset: 0}, queryParams)});
+        } catch (e) {
+            throw new Utils.ASAApiError(e);
         }
-        return res.data;
     }
 
-    async post(path, body) {
-        const self = this;
+    post(path, body) {
         try {
-            const res = await this._client.post(path, body)
-            const pagination = res.data.pagination;
-            const bodyPagination = body.pagination ? body.pagination : (body.selector ? body.selector.pagination : null);
-            if (pagination !== null && bodyPagination) {
-                bodyPagination.offset = pagination.startIndex + bodyPagination.limit;
-                if (bodyPagination.offset <= pagination.totalResults) {
-                    res.data.next = () => {
-                        return self.post(path, body);
-                    };
-                }
-            }
-            return res.data;
+            return this._client.post(path, body);
         } catch (e) {
-            throw new ASAApiError(e);
+            throw new Utils.ASAApiError(e);
         }
     }
 
     async put(path, body) {
         try {
             const res = await this._client.put(path, body)
-            return res.data;
+            return res.data.data;
         } catch (e) {
-            throw new ASAApiError(e);
+            throw new Utils.ASAApiError(e);
         }
     }
 
     async delete(path) {
         try {
             const res = await this._client.delete(path);
-            return res.data;
+            return res.data.data;
         } catch (e) {
-            throw new ASAApiError(e);
+            throw new Utils.ASAApiError(e);
         }
     }
 }

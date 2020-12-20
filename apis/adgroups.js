@@ -13,9 +13,8 @@ module.exports = class AdGroups extends Api {
      * @param {AdGroup} adGroup the ad group to create
      * @returns {Promise<AdGroup>}
      */
-    async create(campaignId, adGroup) {
-        const resp = await super.create(`campaigns/${campaignId}/adgroups`, adGroup);
-        return resp.data;
+    create(campaignId, adGroup) {
+        return super.create(`campaigns/${campaignId}/adgroups`, adGroup);
     }
 
     /**
@@ -26,9 +25,8 @@ module.exports = class AdGroups extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<AdGroup>}>}
      */
-    async find(campaignId, selector, {pageSize = 1000} = {}) {
-        const resp = await super.find(`campaigns/${campaignId}/adgroups/find`, selector, pageSize);
-        return {results: resp.data, next: resp.next};
+    find(campaignId, selector, {pageSize = 1000} = {}) {
+        return super.find(`campaigns/${campaignId}/adgroups/find`, selector, pageSize);
     }
 
     /**
@@ -38,9 +36,8 @@ module.exports = class AdGroups extends Api {
      * @param {number|string} adGroupId the id of the ad group to fetch
      * @returns {Promise<AdGroup>}
      */
-    async get(campaignId, adGroupId) {
-        const resp = await super.get(`campaigns/${campaignId}/adgroups/${adGroupId}`);
-        return resp.data;
+    get(campaignId, adGroupId) {
+        return super.get(`campaigns/${campaignId}/adgroups/${adGroupId}`);
     }
 
     /**
@@ -50,9 +47,8 @@ module.exports = class AdGroups extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<AdGroup>}>}
      */
-    async getAll(campaignId, {pageSize = 1000} = {}) {
-        const resp = await super.get(`campaigns/${campaignId}/adgroups`, pageSize);
-        return {results: resp.data, next: resp.next};
+    getAll(campaignId, {pageSize = 1000} = {}) {
+        return super.get(`campaigns/${campaignId}/adgroups`, pageSize);
     }
 
     /**
@@ -63,9 +59,8 @@ module.exports = class AdGroups extends Api {
      * @param {AdGroup.UpdateRequest} adGroupUpdateRequest array of AdGroup.UpdateRequest
      * @returns {Promise<AdGroup>}
      */
-    async update(campaignId, adGroupId, adGroupUpdateRequest) {
-        const resp = await super.update(`campaigns/${campaignId}/adgroups/${adGroupId}`, adGroupUpdateRequest)
-        return resp.data;
+    update(campaignId, adGroupId, adGroupUpdateRequest) {
+        return super.update(`campaigns/${campaignId}/adgroups/${adGroupId}`, adGroupUpdateRequest)
     }
 
     /**

@@ -14,9 +14,8 @@ module.exports = class Keywords extends Api {
      * @param {Array<Keyword>} keywords the keywords to create
      * @returns {Promise<Keyword>}
      */
-    async create(campaignId, adGroupId, keywords) {
-        const resp = await super.create(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords/bulk`, keywords);
-        return resp.data;
+    create(campaignId, adGroupId, keywords) {
+        return super.create(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords/bulk`, keywords);
     }
 
     /**
@@ -27,9 +26,8 @@ module.exports = class Keywords extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<Keyword>}>}
      */
-    async find(campaignId, selector, {pageSize = 1000} = {}) {
-        const resp = await super.find(`campaigns/${campaignId}/adgroups/targetingkeywords/find`, selector, pageSize);
-        return {results: resp.data, next: resp.next};
+    find(campaignId, selector, {pageSize = 1000} = {}) {
+        return super.find(`campaigns/${campaignId}/adgroups/targetingkeywords/find`, selector, pageSize);
     }
 
     /**
@@ -40,9 +38,8 @@ module.exports = class Keywords extends Api {
      * @param {number|string} keywordId the id of the keyword to fetch
      * @returns {Promise<Keyword>}
      */
-    async get(campaignId, adGroupId, keywordId) {
-        const resp = await super.get(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords/${keywordId}`);
-        return resp.data;
+    get(campaignId, adGroupId, keywordId) {
+        return super.get(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords/${keywordId}`);
     }
 
     /**
@@ -53,9 +50,8 @@ module.exports = class Keywords extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<Keyword>}>}
      */
-    async getAll(campaignId, adGroupId, {pageSize = 1000} = {}) {
-        const resp = await super.get(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords`, pageSize);
-        return {results: resp.data, next: resp.next};
+    getAll(campaignId, adGroupId, {pageSize = 1000} = {}) {
+        return super.get(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords`, pageSize);
     }
 
     /**
@@ -66,8 +62,7 @@ module.exports = class Keywords extends Api {
      * @param {Array<Keyword.UpdateRequest>} keywordUpdateRequests array of Keyword.UpdateRequest
      * @returns {Promise<Keyword>}
      */
-    async update(campaignId, adGroupId, keywordUpdateRequests) {
-        const resp = await super.update(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords/bulk`, keywordUpdateRequests);
-        return resp.data;
+    update(campaignId, adGroupId, keywordUpdateRequests) {
+        return super.update(`campaigns/${campaignId}/adgroups/${adGroupId}/targetingkeywords/bulk`, keywordUpdateRequests);
     }
 }

@@ -12,9 +12,8 @@ module.exports = class Campaigns extends Api {
      * @param {Campaign} campaign the campaign to create
      * @returns {Promise<Campaign>}
      */
-    async create(campaign) {
-        const resp = await super.create('campaigns', campaign);
-        return resp.data;
+    create(campaign) {
+        return super.create('campaigns', campaign);
     }
 
     /**
@@ -24,9 +23,8 @@ module.exports = class Campaigns extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<Campaign>}>}
      */
-    async find(selector, {pageSize = 1000} = {}) {
-        const resp = await super.find('campaigns/find', selector, pageSize);
-        return {results: resp.data, next: resp.next};
+    find(selector, {pageSize = 1000} = {}) {
+        return super.find('campaigns/find', selector, pageSize);
     }
 
     /**
@@ -35,9 +33,8 @@ module.exports = class Campaigns extends Api {
      * @param {number|string} campaignId the id of the associated campaign
      * @returns {Promise<Campaign>}
      */
-    async get(campaignId) {
-        const resp = await super.get(`campaigns/${campaignId}`);
-        return resp.data;
+    get(campaignId) {
+        return super.get(`campaigns/${campaignId}`);
     }
 
     /**
@@ -46,9 +43,8 @@ module.exports = class Campaigns extends Api {
      * @param {number} pageSize the size of each page in the returned results
      * @returns {Promise<{next: function, results: Array<Campaign>}>}
      */
-    async getAll({pageSize = 1000} = {}) {
-        const resp = await super.get('campaigns', pageSize);
-        return {results: resp.data, next: resp.next};
+    getAll({pageSize = 1000} = {}) {
+        return super.get('campaigns', pageSize);
     }
 
     /**
@@ -58,7 +54,7 @@ module.exports = class Campaigns extends Api {
      * @param {Campaign.UpdateRequest} campaignUpdateRequest array of Campaign.UpdateRequest
      * @returns {Promise<Campaign>}
      */
-    async update(campaignId, campaignUpdateRequest) {
+    update(campaignId, campaignUpdateRequest) {
         let clearGeoTargeting = false;
         if (campaignUpdateRequest.countriesOrRegions) {
             if (campaignUpdateRequest.countriesOrRegions.length) {
@@ -74,8 +70,7 @@ module.exports = class Campaigns extends Api {
             body.clearGeoTargetingOnCountryOrRegionChange = true;
         }
 
-        const resp = await super.update(`campaigns/${campaignId}`, body);
-        return resp.data;
+        return super.update(`campaigns/${campaignId}`, body);
     }
 
     /**
