@@ -69,7 +69,7 @@ const asaApi = new AsaApi('<org-id-here>', new Certificate(
 
 ## Usage
 ### Authentication
-(taken from [Apple Search Ads Authentication docs](https://developer.apple.com/documentation/apple_search_ads/authenticating_with_the_apple_search_ads_api))
+(based on [Apple Search Ads Authentication docs](https://developer.apple.com/documentation/apple_search_ads/authenticating_with_the_apple_search_ads_api))
 
 #### Generate an API Certificate
 To establish SSL authentication, do the following steps:
